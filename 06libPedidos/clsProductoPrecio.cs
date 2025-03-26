@@ -22,11 +22,11 @@ namespace _06libPedidos
                 $"Porcentaje Ieps: {PorcentajeIeps.ToString()}";
         }
 
-        public decimal DesglosaImpuestos(out decimal MontoIva, out decimal MontoIeps)
+        public decimal DesglosaImpuestos(recMontosImpuestos Montos)
         {
             decimal resultado = 0;
-
-            resultado = CalculoPrecio.DesglosaImpuestos(PrecioPublico, PorcentajeIva, PorcentajeIeps, out MontoIva, out MontoIeps);
+            recImpuestos Impuestos = new recImpuestos(PorcentajeIva, PorcentajeIeps);
+            resultado = CalculoPrecio.DesglosaImpuestos(PrecioPublico, Impuestos, Montos);
             return resultado;
         }
 

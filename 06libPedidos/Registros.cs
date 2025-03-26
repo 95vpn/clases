@@ -28,5 +28,9 @@ public record recMontosImpuestos
     public decimal MontoIva { get; set; }
     public decimal MontoIeps { get; set; }
 
-    public recMontosImpuestos(decimal monto)
+    public recMontosImpuestos(decimal montoIva, decimal montoIeps)
+    {
+        MontoIva = montoIva;
+        MontoIeps = montoIeps;
+    }
 }

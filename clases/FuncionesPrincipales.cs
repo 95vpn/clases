@@ -66,10 +66,11 @@ namespace clases
             Producto.PorcentajeIeps = 8;
             decimal precioSinImpuestos, MontoIva, MontoIeps;
             Console.WriteLine(Producto);
-            precioSinImpuestos = Producto.DesglosaImpuestos(out MontoIva, out MontoIeps);
-            Console.WriteLine(precioSinImpuestos.ToString());
-            Console.WriteLine(MontoIva.ToString("C"));
-            Console.WriteLine(MontoIeps.ToString("C"));
+            recMontosImpuestos Montos = new recMontosImpuestos(0, 0);
+            precioSinImpuestos = Producto.DesglosaImpuestos(Montos);
+            Console.WriteLine(precioSinImpuestos.ToString("C"));
+            Console.WriteLine(Montos.ToString());
+            
 
         }
     }
