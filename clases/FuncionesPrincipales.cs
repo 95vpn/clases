@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using _06libPedidos;
+﻿using _06libPedidos;
 
 namespace clases
 {
@@ -99,6 +94,8 @@ namespace clases
                         cliente.idCliente = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Dame el nombre completo del cliente");
                         cliente.NombreCompleto = Console.ReadLine();
+                        Console.WriteLine("Dame el RFC del cliente");
+                        cliente.Rfc = Console.ReadLine();
                         Clientes.Add(cliente);
                         break;
                     case 2:
@@ -116,6 +113,46 @@ namespace clases
                         break;
                 }
             } while (opcion != 0);
+        }
+        public static void EjemploDiccionario()
+        {
+            ctrObtenProductos cProductos = new ctrObtenProductos();
+            cProductos.ObtenProductos();
+            int opcion = 0;
+
+            do
+            {
+                Console.WriteLine("Opciones de diccionarios de prooducto");
+
+                Console.WriteLine();
+                Console.WriteLine("1. Ver la lista de productos");
+                Console.WriteLine("2. Buscar un producto por codigo de barras");
+                Console.WriteLine("3. Salir");
+                opcion = Convert.ToInt32(Console.ReadLine());
+
+                switch (opcion)
+                {
+                    case 1:
+                        foreach (recProductos item in cProductos.Productos.Values)
+                        {
+                            Console.WriteLine(item.ToString() );
+                        }
+                        break;
+                    case 2:
+                        Console.WriteLine("Dame un código de barras");
+                        string codigo = Console.ReadLine();
+                        recProductos productos;
+                        if (cProductos.ObtenProducto(codigo, out productos))
+                            Console.WriteLine("El valor encontrado es: " + productos.ToString());
+                        else
+                            Console.WriteLine("El producto no se encontró");
+                        break;
+                    
+                    default:
+                        break;
+                }
+            } while (opcion != 0);
+
         }
     }
 }

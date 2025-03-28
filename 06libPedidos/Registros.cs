@@ -1,8 +1,8 @@
 ﻿public record class recProductos
 {
-    public int idProducto { get; set; }
-    public string Description { get; set; }
-    public string CodigoBarras { get; set; }
+    public int idProducto { get; init; }
+    public string Description { get; init; }
+    public string CodigoBarras { get; init; }
     public recProductos(int idProducto, string description, string codigoBarras)
     {
         this.idProducto = idProducto;
