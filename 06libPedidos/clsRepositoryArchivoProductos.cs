@@ -17,27 +17,35 @@ namespace _06libPedidos
         }
         public Dictionary<string, recProductos> ObtenTodos()
         {
-            TextReader txtReader;
-            string linea;
-            Dictionary<string, recProductos> Productos = new Dictionary<string, recProductos>();
-            if (File.Exists(NombreArchivo))
+            try
             {
-                using (txtReader = new StringReader(NombreArchivo))
+                TextReader txtReader;
+                string linea;
+                Dictionary<string, recProductos> Productos = new Dictionary<string, recProductos>();
+                if (File.Exists(NombreArchivo))
                 {
-                    do
+                    using (txtReader = new StringReader(NombreArchivo))
                     {
-                        linea = txtReader.ReadLine();
-                        if (linea != null)
+                        do
                         {
-                            string[] campos = linea.Split(',');
-                            Productos.Add(campos[2], new recProductos(
-                                Convert.ToInt32(campos[0]), campos[1], campos[2]));
-                        }
-                    } while (linea != null);
-                    txtReader.Close();
+                            linea = txtReader.ReadLine();
+                            if (linea != null)
+                            {
+                                string[] campos = linea.Split(',');
+                                Productos.Add(campos[2], new recProductos(
+                                    Convert.ToInt32(campos[0]), campos[1], campos[2]));
+                            }
+                        } while (linea != null);
+                        txtReader.Close();
+                    }
                 }
                 return Productos;
             }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
            
         }
     }

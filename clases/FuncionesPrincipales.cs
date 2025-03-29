@@ -116,43 +116,50 @@ namespace clases
         }
         public static void EjemploDiccionario()
         {
-            clsRepositorioMemProducto repoMProductos = new clsRepositorioMemProducto();
-            ctrObtenProductos cProductos = new ctrObtenProductos(repoMProductos);
-            cProductos.ObtenProductos();
-            int opcion = 0;
-
-            do
+            try
             {
-                Console.WriteLine("Opciones de diccionarios de prooducto");
+                //clsRepositorioMemProducto repoMProductos = new clsRepositorioMemProducto();
+                clsRepositoryArchivoProductos repoArchProductos = new clsRepositoryArchivoProductos(@"C:\Users\kalilinux\Desktop\developer\NET Core\clases\06libPedidos\Archivos\Productos.txt");
+                ctrObtenProductos cProductos = new ctrObtenProductos(repoArchProductos);
+                cProductos.ObtenProductos();
+                int opcion = 0;
 
-                Console.WriteLine();
-                Console.WriteLine("1. Ver la lista de productos");
-                Console.WriteLine("2. Buscar un producto por codigo de barras");
-                Console.WriteLine("3. Salir");
-                opcion = Convert.ToInt32(Console.ReadLine());
-
-                switch (opcion)
+                do
                 {
-                    case 1:
-                        foreach (recProductos item in cProductos.Productos.Values)
-                        {
-                            Console.WriteLine(item.ToString() );
-                        }
-                        break;
-                    case 2:
-                        Console.WriteLine("Dame un código de barras");
-                        string codigo = Console.ReadLine();
-                        recProductos productos;
-                        if (cProductos.ObtenProducto(codigo, out productos))
-                            Console.WriteLine("El valor encontrado es: " + productos.ToString());
-                        else
-                            Console.WriteLine("El producto no se encontró");
-                        break;
-                    
-                    default:
-                        break;
-                }
-            } while (opcion != 0);
+                    Console.WriteLine("Opciones de diccionarios de prooducto");
+
+                    Console.WriteLine();
+                    Console.WriteLine("1. Ver la lista de productos");
+                    Console.WriteLine("2. Buscar un producto por codigo de barras");
+                    Console.WriteLine("3. Salir");
+                    opcion = Convert.ToInt32(Console.ReadLine());
+
+                    switch (opcion)
+                    {
+                        case 1:
+                            foreach (recProductos item in cProductos.Productos.Values)
+                            {
+                                Console.WriteLine(item.ToString());
+                            }
+                            break;
+                        case 2:
+                            Console.WriteLine("Dame un código de barras");
+                            string codigo = Console.ReadLine();
+                            recProductos productos;
+                            if (cProductos.ObtenProducto(codigo, out productos))
+                                Console.WriteLine("El valor encontrado es: " + productos.ToString());
+                            else
+                                Console.WriteLine("El producto no se encontró");
+                            break;
+                        default:
+                            break;
+                    }
+                } while (opcion != 0);
+            }
+            catch (Exception ex) 
+            { 
+                Console.WriteLine(ex.Message); 
+            }
 
         }
     }
