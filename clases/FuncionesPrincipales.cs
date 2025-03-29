@@ -116,7 +116,8 @@ namespace clases
         }
         public static void EjemploDiccionario()
         {
-            ctrObtenProductos cProductos = new ctrObtenProductos();
+            clsRepositorioMemProducto repoMProductos = new clsRepositorioMemProducto();
+            ctrObtenProductos cProductos = new ctrObtenProductos(repoMProductos);
             cProductos.ObtenProductos();
             int opcion = 0;
 

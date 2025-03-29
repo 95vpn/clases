@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _06libPedidos
 {
-    public class clsRepositorioMemProducto
+    public class clsRepositorioMemProducto : intRepositorioProductos
     {
         public Dictionary<string, recProductos> ObtenTodos()
         {
